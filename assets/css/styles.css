@@ -581,6 +581,12 @@ img {
   margin-bottom: 2rem;
 }
 
+.home__name,
+.about__section,
+.about__section .section__title {
+  color: #000;
+}
+
 .about__section {
   text-align: center;
 }
@@ -608,8 +614,20 @@ img {
   margin-bottom: 1rem;
 }
 
+.experience__assignment {
+  display: grid;
+  gap: .25rem;
+  margin-bottom: 1rem;
+  font-size: var(--small-font-size);
+}
+
+.experience__assignment span {
+  color: var(--text-color-light);
+}
+
 .experience__description {
   font-size: var(--small-font-size);
+  line-height: 1.6;
 }
 
 .skills__grid {
@@ -1145,13 +1163,6 @@ img {
 
   .info__container {
     column-gap: 6rem;
-  }
-
-  .about__description{
-    color: black;
-  }
-  .experience__description {
-    line-height: 1.6;
   }
 
   .skills__grid {
