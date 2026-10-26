@@ -48,7 +48,9 @@
             </div>
 
             <div class="nav__buttons">
-                <i class="ri-moon-line change-theme" id="theme-button"></i>
+                <button type="button" class="change-theme" id="theme-button" aria-label="Switch to light theme" aria-pressed="false">
+                    <i class="ri-moon-line" aria-hidden="true"></i>
+                </button>
 
                 <div class="nav__toggle" id="nav-toggle">
                     <i class="ri-menu-4-line"></i>
@@ -61,7 +63,7 @@
         <section class="home section" id="home">
             <div>
                 <h1 class="home__name">
-                    MAHLON LOSHAMI LETAKAI.
+                    MAHLON LOSHAMI LETAKAI
                 </h1>
                 
             </div>
@@ -87,16 +89,30 @@
                                     <strong>ICT Intern, Kenya Broadcasting Corporation (KBC) | Nairobi, Kenya</strong>
                                     <span>Feb 2026 - Present | Deployed by ICT Authority</span>
                                 </p>
-                                <p class="experience__description">
-                                    Provide helpdesk support, maintain server uptime, support cloud adoption and staff training, and gather user feedback to improve IT services.
-                                </p>
+                                <ul class="experience__responsibilities experience__description">
+                                    <li><strong>Operational IT Support:</strong> Delivered tier-1 and tier-2 helpdesk support, resolving daily technical issues across multiple departments to maintain productivity.</li>
+                                    <li><strong>Stakeholder Feedback:</strong> Organized client and user feedback sessions to evaluate IT services, document system requirements, and implement continuous improvements.</li>
+                                    <li><strong>Reporting and Compliance:</strong> Prepared comprehensive technical reports summarizing system performance and project milestones for management review.</li>
+                                    <li><strong>Server Operations:</strong> Monitored live servers and restored uptime following sudden power outages.</li>
+                                    <li><strong>Cloud Infrastructure and Training:</strong> Supported the integration of Cloud (XaaS) solutions and led capacity-building sessions to train staff on cloud utilization.</li>
+                                </ul>
                             </li>
                             <li class="experience__item">
-                                <h3 class="experience__role">ICT Intern</h3>
+                                <h3 class="experience__role">ICT Intern/Assistant System Administrator</h3>
                                 <p class="experience__company">Supa Sacco Limited | Maralal, Kenya | Sep 2024 - Jan 2026</p>
-                                <p class="experience__description">
-                                    Supported staff and members, managed servers, Active Directory and VPN security, maintained the Sacco website, and assisted with hardware and network operations.
-                                </p>
+                                <ul class="experience__responsibilities experience__description">
+                                    <li><strong>Network and Security Management:</strong> Maintained local servers, managed Active Directory user accounts and permissions, configured VPNs, and enforced endpoint antivirus protection.</li>
+                                    <li><strong>Asset and Resource Stewardship:</strong> Supervised hardware repairs and electrical maintenance, and tracked Sacco-financed assets and vehicles through remote monitoring systems.</li>
+                                    <li><strong>Web and Systems Maintenance:</strong> Designed, updated, and deployed the Sacco website via secure FTP; maintained shared server resources for multi-departmental access.</li>
+                                    <li><strong>Field and Operations Support:</strong> Assisted with NTSA collateral verification workflows, hardware upgrades (RAM/HDD replacements), and structured cabling.</li>
+                                    <li>Provided daily IT support to staff members.</li>
+                                    <li>Designed flyers and brochures for marketing.</li>
+                                    <li>Ensured all Sacco-owned financed motor vehicles had active trackers.</li>
+                                    <li>Supervised electrical and major hardware repairs; provided daily operational support and maintained printers, scanners, PCs, and network cabling, including crimping and LAN maintenance.</li>
+                                    <li>Supported front-office operations, customer care, field revenue collection tools, and digital member onboarding.</li>
+                                    <li>Monitored the local server and ensured shared resources remained accessible to users.</li>
+                                    <li>Supported field revenue collection.</li>
+                                </ul>
                             </li>
                         </ul>
                     </div>
@@ -189,14 +205,6 @@
                     <span class="work__subtitle">Personal Blog</span>
                 </article>
 
-                <article class="work__card">
-                    <a href="#" target="_blank" class="work__link">
-                        <img src="assets/img/work-6.jpg" alt="image" class="work__img">
-                        <i class="ri-arrow-right-circle-line work__icon"></i>
-                    </a>
-                    <h2 class="work__title">Portfolio</h2>
-                    <span class="work__subtitle">Photography Portfolio</span>
-                </article>
             </div>
         </section>
 
@@ -291,10 +299,9 @@
             </div>
 
             <div class="contact__cv">
-                <a href="assets/pdf/MyCV.main.pdf" download="MyCV.main.pdf" class="contact__cv-link" aria-label="Download my CV" title="Download my CV">
-                    <img src="assets/img/ME3.jpeg" alt="">
+                <a href="assets/pdf/MyCV(MostRecent).pdf" download="MyCV(MostRecent).pdf" class="contact__cv-link" aria-label="Download my CV" title="Download my CV">
+                    CV
                 </a>
-                <span class="contact__cv-label">CV</span>
             </div>
         </section>
     </main>

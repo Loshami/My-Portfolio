@@ -15,6 +15,7 @@
   --text-color-light: hsl(var(--hue), 20%, 70%);
   --body-color: hsl(var(--hue), 40%, 16%);
   --container-color: hsl(var(--hue), 40%, 20%);
+  --menu-color: hsla(var(--hue), 40%, 16%, .8);
   --shadow-color: hsla(var(--hue), 30%, 8%, .4);
 
   /*========== Font and typography ==========*/
@@ -36,6 +37,19 @@
   /*========== z index ==========*/
   --z-tooltip: 10;
   --z-fixed: 100;
+}
+
+body.light-theme {
+  --first-color: hsl(230, 55%, 48%);
+  --first-color-light: hsl(230, 55%, 58%);
+  --first-color-alt: hsl(230, 50%, 42%);
+  --title-color: hsl(230, 30%, 15%);
+  --text-color: hsl(230, 20%, 28%);
+  --text-color-light: hsl(230, 15%, 42%);
+  --body-color: hsl(230, 30%, 97%);
+  --container-color: hsl(0, 0%, 100%);
+  --menu-color: hsla(0, 0%, 100%, .96);
+  --shadow-color: hsla(230, 30%, 8%, .12);
 }
 
 /*========== Responsive typography==========*/
@@ -126,12 +140,12 @@ img {
   font-size: var(--h1-font-size);
   font-weight: var(--font-bold);
   margin-bottom: 2rem;
-  color: black;
+  color: var(--title-color);
 }
 
 .main {
   overflow: hidden;
-  background-color: rgb(215, 215, 135);
+  background-color: var(--body-color);
 }
 
 /*=============== HEADER & NAV ===============*/
@@ -145,7 +159,7 @@ img {
 }
 
 .nav {
-  background-color: #fda500;
+  background-color: var(--container-color);
   height: var(--header-height);
   display: flex;
   justify-content: space-between;
@@ -192,13 +206,22 @@ img {
   cursor: pointer;
 }
 
+.change-theme {
+  display: grid;
+  place-items: center;
+  background: transparent;
+  color: var(--title-color);
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
 /* Navigation for mobile devices */
 @media screen and (max-width: 1150px) {
   .nav__menu {
     position: fixed;
     top: -100%;
     left: 0;
-    background-color: hsla(var(--hue), 40%, 16%, .8);
+    background-color: var(--menu-color);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px); /* For Safari */
     width: 100%;
@@ -233,13 +256,13 @@ img {
 }
 
 .nav__link {
-  color: blue;
+  color: var(--text-color);
   font-weight: var(--font-semi-bold);
   transition: color .4s;
 }
 
 .nav__link:hover {
-  color: rgb(255, 0, 0);
+  color: var(--first-color);
 }
 
 .nav__close {
@@ -288,7 +311,7 @@ img {
 
 .home__intro-text {
     font-size: clamp(1rem, 2vw, 1.5rem); /* Responsive font size */
-    color: #222;
+    color: var(--text-color);
     text-align: center;
 }
 
@@ -417,7 +440,7 @@ img {
 .home__description {
   text-align: center;
   margin-bottom: 2.5rem;
-  color: black;
+  color: var(--text-color);
 }
 
 .home__description-text {
@@ -515,7 +538,7 @@ img {
 
 .work__card {
   position: relative;
-  background-color: teal;
+  background-color: var(--container-color);
   padding: .75rem;
   border-radius: 1rem;
   box-shadow: 0 4px 12px var(--shadow-color);
@@ -553,14 +576,14 @@ img {
 }
 
 .work__title {
-  color: black;
+  color: var(--title-color);
   font-size: var(--h3-font-size);
   margin-top: 1rem;
   margin-bottom: .25rem;
 }
 
 .work__subtitle {
-  color: black;
+  color: var(--text-color);
   font-size: var(--small-font-size);
 }
 
@@ -584,7 +607,7 @@ img {
 .home__name,
 .about__section,
 .about__section .section__title {
-  color: #000;
+  color: var(--title-color);
 }
 
 .about__section {
@@ -630,6 +653,19 @@ img {
   line-height: 1.6;
 }
 
+.experience__responsibilities {
+  display: grid;
+  gap: .5rem;
+  padding-left: 1.15rem;
+  list-style: disc;
+  overflow-wrap: anywhere;
+}
+
+.experience__role,
+.experience__company {
+  overflow-wrap: anywhere;
+}
+
 .skills__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
@@ -671,8 +707,8 @@ img {
 
 .services__card {
   position: relative;
-  background-color: teal;
-  color: black;
+  background-color: var(--container-color);
+  color: var(--text-color);
   padding: 2.5rem 1rem 1rem;
   border-radius: 1rem;
   box-shadow: 0 4px 12px var(--shadow-color);
@@ -727,7 +763,7 @@ img {
 }
 
 .contact__button {
-  background-color: teal;
+  background-color: var(--first-color);
   color: var(--title-color);
   padding: 1rem;
   border-radius: .5rem;
@@ -775,7 +811,7 @@ img {
 .contact__social-description-1,
 .contact__social-description-2 {
   font-size: var(--small-font-size);
-  color: black;
+  color: var(--text-color);
 }
 
 .contact__social-description-1 {
@@ -785,7 +821,7 @@ img {
 }
 
 .contact__social-links {
-  background-color: black;
+  background-color: var(--container-color);
   display: flex;
   column-gap: .5rem;
 }
@@ -802,11 +838,16 @@ img {
 
 .contact__cv-link {
   display: inline-flex;
-  width: calc(1.25rem * 1.35);
-  height: calc(1.25rem * 1.35);
-  overflow: hidden;
-  border-radius: 50%;
-  transition: transform .4s;
+  align-items: center;
+  justify-content: center;
+  min-width: 3.5rem;
+  min-height: 2.5rem;
+  padding: .5rem 1rem;
+  border-radius: .5rem;
+  background-color: #800020;
+  color: #fff;
+  font-weight: var(--font-bold);
+  transition: transform .4s, background-color .4s;
 }
 
 .contact__cv {
@@ -817,30 +858,15 @@ img {
   margin-top: 1rem;
 }
 
-.contact__cv-link img {
-  width: 100%;
-  height: 100%;
-  max-width: 100%;
-  object-fit: cover;
-}
-
 .contact__cv-link:hover {
   transform: translateY(-.25rem);
-}
-
-.contact__cv-label {
-  color: #fff;
-  background-color: #800020;
-  font-size: var(--small-font-size);
-  font-weight: var(--font-semi-bold);
-  padding: .15rem .4rem;
-  border-radius: .25rem;
+  background-color: #650019;
 }
 
 /*=============== FOOTER ===============*/
 .footer {
   padding-block: 1rem;
-  background-color: #fda500;
+  background-color: var(--container-color);
 }
 
 .footer__container {
@@ -852,23 +878,23 @@ img {
 }
 
 .footer__links {
-  color: blue;
+  color: var(--text-color);
   display: flex;
   column-gap: 1.5rem;
 }
 
 .footer__link {
-  color: blue;
+  color: var(--text-color);
   transition: color .4s;
 }
 
 .footer__link:hover {
-  color: red;
+  color: var(--first-color);
 }
 
 .footer__copy {
   font-size: var(--small-font-size);
-  color: black;
+  color: var(--text-color);
 }
 
 /*=============== SCROLL BAR ===============*/
@@ -923,18 +949,18 @@ img {
   /* In your styles.css file */
 .home__image-frame {
   /* Give the container a consistent size and aspect ratio */
-  width: 450px; 
+  width: 450px;
   height: 450px;
-  
+
   /* Make it a circle or rounded square */
   border-radius: 50%;
-  
+
   /* Use an inset box-shadow for an elegant, non-colored border look */
   box-shadow: inset 0 0 0 5px rgba(255, 255, 255, 0.7);
-  
+
   /* Position relative for child elements */
   position: relative;
-  
+
   /* Hide any parts of the image that might overflow the frame */
   overflow: hidden;
 
@@ -950,10 +976,10 @@ img {
   width: 100%;
   height: 50%;
   border-radius: 1rem;
-  
+
   /* Ensure the image covers the entire frame without distortion */
   object-fit: cover;
-  
+
   /* Center the image within the container */
   object-position: center;
 }
@@ -1079,7 +1105,7 @@ img {
   justify-self: center;
   font-size: var(--biggest-font-size);
   margin-bottom: 1.5rem;
-  color: rgba(0, 0, 0, 1);
+  color: var(--title-color);
   margin-bottom: .5rem;
   }
 
@@ -1195,10 +1221,6 @@ img {
     font-size: 1.5rem;
   }
 
-  .contact__cv-link {
-    width: calc(1.5rem * 1.35);
-    height: calc(1.5rem * 1.35);
-  }
 }
 
 /* responsive: stack on small screens */

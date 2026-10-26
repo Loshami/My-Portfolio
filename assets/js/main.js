@@ -3,8 +3,49 @@ const navMenu = document.getElementById('nav-menu'),
       navToggle = document.getElementById('nav-toggle'),
       navClose = document.getElementById('nav-close')
 
+/*=============== THEME TOGGLE ===============*/
+const themeButton = document.getElementById('theme-button')
+const themeIcon = themeButton?.querySelector('i')
+
+const readSavedTheme = () => {
+    try {
+        const savedTheme = localStorage.getItem('portfolio-theme')
+        return savedTheme === 'light' || savedTheme === 'dark' ? savedTheme : 'dark'
+    } catch (error) {
+        console.warn('Unable to read the saved theme preference.', error)
+        return 'dark'
+    }
+}
+
+const updateTheme = (theme) => {
+    const isLightTheme = theme === 'light'
+    document.body.classList.toggle('light-theme', isLightTheme)
+
+    if (themeButton && themeIcon) {
+        themeIcon.classList.toggle('ri-sun-line', isLightTheme)
+        themeIcon.classList.toggle('ri-moon-line', !isLightTheme)
+        themeButton.setAttribute('aria-pressed', String(isLightTheme))
+        themeButton.setAttribute('aria-label', `Switch to ${isLightTheme ? 'dark' : 'light'} theme`)
+    }
+}
+
+updateTheme(readSavedTheme())
+
+if (themeButton) {
+    themeButton.addEventListener('click', () => {
+        const nextTheme = document.body.classList.contains('light-theme') ? 'dark' : 'light'
+        updateTheme(nextTheme)
+
+        try {
+            localStorage.setItem('portfolio-theme', nextTheme)
+        } catch (error) {
+            console.warn('Unable to save the theme preference.', error)
+        }
+    })
+}
+
 /* Menu show */
-if(navToggle){
+if(navToggle && navMenu){
     navToggle.addEventListener('click', () =>{
         navMenu.classList.add('show-menu')
     })
@@ -59,7 +100,7 @@ navLink.forEach(n => n.addEventListener('click', linkAction))
 const blurHeader = () =>{
     const header = document.getElementById('header')
     // When the scroll is greater than 50 viewport height, add the blur-header class to the header tag
-    this.scrollY >= 50 ? header.classList.add('blur-header') 
+    window.scrollY >= 50 ? header.classList.add('blur-header')
                        : header.classList.remove('blur-header')
 }
 window.addEventListener('scroll', blurHeader)
@@ -93,18 +134,18 @@ const sendEmail = (e) =>{
 
 contactForm.addEventListener('submit', sendEmail)
 
-/*=============== SHOW SCROLL UP ===============*/ 
+/*=============== SHOW SCROLL UP ===============*/
 const scrollUp = () =>{
     const scrollUp = document.getElementById('scroll-up')
     // When the scroll is higher than 350 viewport height, add the show-scroll class to the a tag with the scrollup class
-    this.scrollY >= 350 ? scrollUp.classList.add('show-scroll')
+    window.scrollY >= 350 ? scrollUp.classList.add('show-scroll')
                         : scrollUp.classList.remove('show-scroll')
 }
 window.addEventListener('scroll', scrollUp)
 
 /*=============== SCROLL SECTIONS ACTIVE LINK ===============*/
 const sections = document.querySelectorAll('section[id]')
-    
+
 const scrollActive = () =>{
   	const scrollY = window.pageYOffset
 
@@ -112,13 +153,15 @@ const scrollActive = () =>{
 		const sectionHeight = current.offsetHeight,
 			  sectionTop = current.offsetTop - 58,
 			  sectionId = current.getAttribute('id'),
-			  sectionsClass = document.querySelector('.nav__menu a[href*=' + sectionId + ']')
+			  sectionsClass = document.querySelector('.nav__menu a[href="#' + sectionId + '"]')
+
+        if (!sectionsClass) return
 
 		if(scrollY > sectionTop && scrollY <= sectionTop + sectionHeight){
 			sectionsClass.classList.add('active-link')
 		}else{
 			sectionsClass.classList.remove('active-link')
-		}                                                    
+		}
 	})
 }
 window.addEventListener('scroll', scrollActive)
