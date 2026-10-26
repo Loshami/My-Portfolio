@@ -109,30 +109,45 @@ window.addEventListener('scroll', blurHeader)
 const contactForm = document.getElementById('contact-form'),
       contactMessage = document.getElementById('contact-message')
 
-const sendEmail = (e) =>{
-    e.preventDefault()
-
-    // serviceID - templateID - #form - publickey
-    emailjs.sendForm('serviceID', 'templateID', '#contact-form', 'your-publickey')
-    .then(() =>{
-        // Show sent message
-        contactMessage.textContent = 'Message sent successfully ✅'
-
-        // Remove message after five seconds
-        setTimeout(() =>{
-            contactMessage.textContent = ''
-        }, 5000)
-
-        // Clear input fields
-        contactForm.reset()
-
-    }, () =>{
-        // Show error message
-        contactMessage.textContent = 'Message not sent (service error) ❌'
-    })
+const emailjsConfig = {
+    serviceId: 'service_qf5e10r',
+    templateId: 'template_&twa4r8',
+    publicKey: 'HuX06I8uE0chTgelT'
 }
 
-contactForm.addEventListener('submit', sendEmail)
+const sendEmail = async (e) =>{
+    e.preventDefault()
+
+    const sendButton = contactForm.querySelector('button[type="submit"]')
+    sendButton.disabled = true
+    sendButton.textContent = 'Sending...'
+    contactMessage.textContent = ''
+
+    try {
+        if (typeof emailjs === 'undefined') {
+            throw new Error('EmailJS failed to load.')
+        }
+
+        await emailjs.sendForm(
+            emailjsConfig.serviceId,
+            emailjsConfig.templateId,
+            contactForm,
+            emailjsConfig.publicKey
+        )
+        contactMessage.textContent = 'Message sent successfully.'
+        contactForm.reset()
+    } catch (error) {
+        console.error('Unable to send the contact message.', error)
+        contactMessage.textContent = 'Message could not be sent. Please email marloneloshami476@gmail.com directly.'
+    } finally {
+        sendButton.disabled = false
+        sendButton.textContent = 'Send Message'
+    }
+}
+
+if (contactForm && contactMessage) {
+    contactForm.addEventListener('submit', sendEmail)
+}
 
 /*=============== SHOW SCROLL UP ===============*/
 const scrollUp = () =>{
