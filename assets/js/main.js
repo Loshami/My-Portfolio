@@ -128,10 +128,24 @@ const sendEmail = async (e) =>{
             throw new Error('EmailJS failed to load.')
         }
 
-        await emailjs.sendForm(
+        const formData = new FormData(contactForm)
+        const userName = String(formData.get('user_name') || '').trim()
+        const userEmail = String(formData.get('user_email') || '').trim()
+        const userMessage = String(formData.get('user_message') || '').trim()
+
+        await emailjs.send(
             emailjsConfig.serviceId,
             emailjsConfig.templateId,
-            contactForm,
+            {
+                to_email: 'marloneloshami476@gmail.com',
+                subject: userName,
+                from_name: userName,
+                reply_to: userEmail,
+                user_name: userName,
+                user_email: userEmail,
+                user_message: userMessage,
+                message: userMessage
+            },
             emailjsConfig.publicKey
         )
         contactMessage.textContent = 'Message sent successfully.'
